@@ -20,10 +20,12 @@ public class Collectible : MonoBehaviour
         {
             case CollectibleType.Coin:
                 GameManager.Instance.AddScore(coinValue);
+                AudioManager.Instance.PlayCoin();
                 break;
 
             case CollectibleType.Star:
                 player.GetComponent<PlayerPowerUps>().ActivateInvincibility();
+                AudioManager.Instance.PlayStar();
                 break;
         }
     }

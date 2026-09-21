@@ -63,6 +63,9 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt(BestScoreKey, bestScore);
         PlayerPrefs.Save();
 
+        AudioManager.Instance.StopMusic();
+        AudioManager.Instance.PlayGameOver();
+
         hud.ShowGameOver(finalScore, bestScore);
     }
 }

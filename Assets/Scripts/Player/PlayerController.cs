@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -14,7 +15,8 @@ public class PlayerController : MonoBehaviour
     private bool jumpRequested;
     private bool isGrounded;
 
-    public bool IsGrounded => isGrounded;
+    public event Action Jumped;
+    public event Action Landed;
 
     private void Awake()
     {
@@ -37,10 +39,17 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        bool wasGrounded = isGrounded;
         isGrounded = bodyCollider.IsTouchingLayers(groundLayer);
 
+        if (!wasGrounded && isGrounded)
+            Landed?.Invoke();
+
         if (jumpRequested && isGrounded)
+        {
             body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            Jumped?.Invoke();
+        }
 
         jumpRequested = false;
     }

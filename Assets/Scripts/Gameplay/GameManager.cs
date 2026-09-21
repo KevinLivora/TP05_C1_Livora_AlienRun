@@ -43,6 +43,14 @@ public class GameManager : MonoBehaviour
         hud.SetScore(currentScore);
     }
 
+    public void AddScore(float amount)
+    {
+        if (!IsPlaying)
+            return;
+
+        score += amount;
+    }
+
     public void EndGame()
     {
         if (!IsPlaying)

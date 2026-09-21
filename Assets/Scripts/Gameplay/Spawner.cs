@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class ObstacleSpawner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] obstaclePrefabs;
+    [FormerlySerializedAs("obstaclePrefabs")]
+    [SerializeField] private GameObject[] prefabs;
     [SerializeField] private float minInterval = 1f;
     [SerializeField] private float maxInterval = 2.2f;
 
@@ -28,7 +30,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void Spawn()
     {
-        GameObject prefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
+        GameObject prefab = prefabs[Random.Range(0, prefabs.Length)];
         Vector3 position = new Vector3(transform.position.x, prefab.transform.position.y, 0f);
         Instantiate(prefab, position, Quaternion.identity);
     }

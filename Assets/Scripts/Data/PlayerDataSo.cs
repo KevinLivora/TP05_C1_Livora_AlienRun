@@ -6,4 +6,5 @@ public class PlayerDataSo : ScriptableObject
     public float jumpForce = 15f;
     public float gravityScale = 4f;
     public KeyCode jumpKey = KeyCode.Space;
+    public float invincibilityDuration = 5f;
 }

@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.Instance.IsPlaying)
+            return;
+
         if (Input.GetKeyDown(jumpKey))
             jumpRequested = true;
     }

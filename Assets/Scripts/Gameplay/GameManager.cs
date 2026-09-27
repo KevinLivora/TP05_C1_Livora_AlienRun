@@ -12,10 +12,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float maxSpeed = 16f;
     [SerializeField] private float acceleration = 0.1f;
 
+    [Header("Lives")]
+    [SerializeField] private int startingLives = 0;
+    [SerializeField] private int maxLives = 3;
+
     private const string BestScoreKey = "BestScore";
 
     private float score;
     private int lastShownScore = -1;
+    private int lives;
 
     public bool IsPlaying { get; private set; }
     public float WorldSpeed { get; private set; }
@@ -25,6 +30,8 @@ public class GameManager : MonoBehaviour
         Instance = this;
         IsPlaying = true;
         WorldSpeed = initialSpeed;
+        lives = startingLives;
+        hud.SetLives(lives);
     }
 
     private void Update()
@@ -51,11 +58,34 @@ public class GameManager : MonoBehaviour
         score += amount;
     }
 
-    public void EndGame()
+    public void AddLife()
     {
         if (!IsPlaying)
             return;
 
+        lives = Mathf.Clamp(lives + 1, 0, maxLives);
+        hud.SetLives(lives);
+    }
+
+    public void HandlePlayerHit(PlayerPowerUps playerPowerUps)
+    {
+        if (!IsPlaying)
+            return;
+
+        if (lives > 0)
+        {
+            lives--;
+            hud.SetLives(lives);
+            playerPowerUps.ActivateInvincibility();
+            AudioManager.Instance.PlayLifeLost();
+            return;
+        }
+
+        EndGame();
+    }
+
+    private void EndGame()
+    {
         IsPlaying = false;
 
         int finalScore = Mathf.FloorToInt(score);

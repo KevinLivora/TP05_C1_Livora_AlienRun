@@ -8,6 +8,9 @@ public class GameplayHud : MonoBehaviour
     [Header("Score")]
     [SerializeField] private TMP_Text scoreText;
 
+    [Header("Lives")]
+    [SerializeField] private TMP_Text livesText;
+
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TMP_Text finalScoreText;
@@ -34,6 +37,11 @@ public class GameplayHud : MonoBehaviour
     public void SetScore(int score)
     {
         scoreText.text = $"Score: {score}";
+    }
+
+    public void SetLives(int lives)
+    {
+        livesText.text = $"Lives: {lives}";
     }
 
     public void ShowGameOver(int finalScore, int bestScore)

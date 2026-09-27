@@ -7,9 +7,10 @@ public class Obstacle : MonoBehaviour
         if (!other.CompareTag(GameTags.Player))
             return;
 
-        if (other.GetComponent<PlayerPowerUps>().IsInvincible)
+        PlayerPowerUps powerUps = other.GetComponent<PlayerPowerUps>();
+        if (powerUps.IsInvincible)
             return;
 
-        GameManager.Instance.EndGame();
+        GameManager.Instance.HandlePlayerHit(powerUps);
     }
 }

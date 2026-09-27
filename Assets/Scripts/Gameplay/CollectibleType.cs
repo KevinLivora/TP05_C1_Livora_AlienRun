@@ -1,5 +1,6 @@
 public enum CollectibleType
 {
     Coin,
-    Star
+    Star,
+    ExtraLife
 }

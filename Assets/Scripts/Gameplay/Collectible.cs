@@ -27,6 +27,11 @@ public class Collectible : MonoBehaviour
                 player.GetComponent<PlayerPowerUps>().ActivateInvincibility();
                 AudioManager.Instance.PlayStar();
                 break;
+
+            case CollectibleType.ExtraLife:
+                GameManager.Instance.AddLife();
+                AudioManager.Instance.PlayExtraLife();
+                break;
         }
     }
 }

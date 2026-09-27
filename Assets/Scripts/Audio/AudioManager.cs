@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip landClip;
     [SerializeField] private AudioClip coinClip;
     [SerializeField] private AudioClip starClip;
+    [SerializeField] private AudioClip extraLifeClip;
+    [SerializeField] private AudioClip lifeLostClip;
     [SerializeField] private AudioClip gameOverClip;
 
     [Header("Ui Clips")]
@@ -50,6 +52,10 @@ public class AudioManager : MonoBehaviour
     public void PlayCoin() => sfxSource.PlayOneShot(coinClip);
 
     public void PlayStar() => sfxSource.PlayOneShot(starClip);
+
+    public void PlayExtraLife() => sfxSource.PlayOneShot(extraLifeClip);
+
+    public void PlayLifeLost() => sfxSource.PlayOneShot(lifeLostClip);
 
     public void PlayGameOver() => sfxSource.PlayOneShot(gameOverClip);
 

@@ -10,6 +10,8 @@ public class PlayerPowerUps : MonoBehaviour
     private float invincibleTimer;
 
     public bool IsInvincible => invincibleTimer > 0f;
+    public float InvincibleTimer => invincibleTimer;
+    public float InvincibleDuration => data.invincibilityDuration;
 
     private void Awake()
     {

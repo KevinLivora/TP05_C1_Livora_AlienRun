@@ -11,6 +11,11 @@ public class GameplayHud : MonoBehaviour
     [Header("Lives")]
     [SerializeField] private TMP_Text livesText;
 
+    [Header("Invincibility")]
+    [SerializeField] private PlayerPowerUps playerPowerUps;
+    [SerializeField] private GameObject invincibilityPanel;
+    [SerializeField] private TMP_Text invincibilityText;
+
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TMP_Text finalScoreText;
@@ -26,12 +31,25 @@ public class GameplayHud : MonoBehaviour
         btnMenu.onClick.AddListener(OnMenuClicked);
 
         gameOverPanel.SetActive(false);
+        invincibilityPanel.SetActive(false);
     }
 
     private void OnDestroy()
     {
         btnRetry.onClick.RemoveAllListeners();
         btnMenu.onClick.RemoveAllListeners();
+    }
+
+    private void Update()
+    {
+        bool isInvincible = playerPowerUps.IsInvincible;
+        invincibilityPanel.SetActive(isInvincible);
+
+        if (!isInvincible)
+            return;
+
+        float remaining = Mathf.Max(playerPowerUps.InvincibleTimer, 0f);
+        invincibilityText.text = $"Invincible: {remaining:F1}s";
     }
 
     public void SetScore(int score)

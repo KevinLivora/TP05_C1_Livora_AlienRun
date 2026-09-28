@@ -61,7 +61,6 @@ public class UiPauseMenuManager : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
-    // --- Pausa ---
 
     private void TogglePause()
     {
@@ -76,8 +75,6 @@ public class UiPauseMenuManager : MonoBehaviour
         pausePanel.SetActive(false);
         Time.timeScale = 1f;
     }
-
-    // --- Settings / Credits ---
 
     private void OpenPanel(GameObject panelToOpen)
     {

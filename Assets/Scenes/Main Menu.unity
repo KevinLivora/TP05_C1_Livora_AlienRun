@@ -1876,7 +1876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39f155dd57ae9a44b5cd73b26fc6e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicPlayer
-  music: {fileID: 8300000, guid: f4851b5160df61946aaadabb26a46b0c, type: 3}
+  music: {fileID: 8300000, guid: c56aa75d5974e2c4eab7d6fd84d4c032, type: 3}
 --- !u!4 &1989450745
 Transform:
   m_ObjectHideFlags: 0
